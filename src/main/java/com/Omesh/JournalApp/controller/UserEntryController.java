@@ -1,18 +1,14 @@
 package com.Omesh.JournalApp.controller;
 
 
-import com.Omesh.JournalApp.entity.JournalEntry;
 import com.Omesh.JournalApp.entity.User;
-import com.Omesh.JournalApp.service.JournalEntryService;
 import com.Omesh.JournalApp.service.UserService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -43,7 +39,7 @@ public class UserEntryController {
 
     @PutMapping("/{userName}")
     public ResponseEntity<?> updateUser(@RequestBody User user , @PathVariable String userName){
-        User userInDb = userService.findbyUsername(userName);
+        User userInDb = userService.findUserByUserName(userName);
 
         if(userInDb != null){
             userInDb.setPassword(user.getPassword());
